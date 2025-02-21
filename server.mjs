@@ -1,17 +1,24 @@
+//Imports
 import express from 'express'
 import dotenv from 'dotenv'  // call your port here
+import connectDB from './config/db.mjs'
+import productsRoutes from './routes/productsRoutes.mjs';
 
-// Initialize express app
-const app = express(); // instance of exptess
-const PORT = process.env.PORT || 3000;
+//Setup - Initialize express app
+const app = express(); // instance of express
+const PORT = process.env.PORT || 3001;
 dotenv.config(); // call the dotenv
 
-app.get("/", (req, res) => {
-    res.send("welcome to Home page");
-});
+// DB Connection
+connectDB();
 
+//Middleware
+app.use(express.json())
 
-// Start the server
+//Routes
+app.use('/products', productsRoutes)
+
+//Listener - Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 
