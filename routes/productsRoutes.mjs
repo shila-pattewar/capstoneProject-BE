@@ -50,4 +50,15 @@ router.put('/:id', async (req, res) => {
 })
 // Delete
 
+router.delete('/:id', async (req, res) => {
+    try {
+        let deleteProducts = await products.findByIdAndDelete(req.params.id, req.body, { new: true });
+        res.json(deleteProducts);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: 'server error' })
+    }
+})
+
 export default router;
