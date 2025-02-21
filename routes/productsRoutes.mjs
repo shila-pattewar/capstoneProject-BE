@@ -27,11 +27,27 @@ router.post('/', async (req, res) => {
 })
 
 // Read
-router.get('/', (req, res) => {
-    res.send('GET is working')
+router.get('/', async (req, res) => {
+    try {
+        let allProducts = await products.findOne({})
+        res.json(allProducts)
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: 'server error' })
+    }
 })
 
 // Update
+
+router.put('/:id', async (req, res) => {
+    try {
+        let updateProducts = await products.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(updateProducts)
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: 'server error' })
+    }
+})
 // Delete
 
 export default router;
