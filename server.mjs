@@ -2,6 +2,8 @@
 import express from 'express'
 import dotenv from 'dotenv'  // call your port here
 import connectDB from './config/db.mjs'
+import cloudinary from 'cloudinary';
+import multer from 'multer';
 import productsRoutes from './routes/productsRoutes.mjs';
 
 //Setup - Initialize express app
@@ -11,6 +13,11 @@ dotenv.config(); // call the dotenv
 
 // DB Connection
 connectDB();
+
+//Message display in Browser
+app.get("/", (req, res) => {
+    res.send("Welcome. Server is Running...");
+})
 
 //Middleware
 app.use(express.json())

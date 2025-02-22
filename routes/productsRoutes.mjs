@@ -7,19 +7,20 @@ const router = express.Router()
 router.post('/', async (req, res) => {
     try {
         // Declare a variable then perform action on collection
-        // let newProducts = new products.create(req.body)
-        // res.json(newProducts)  // Return Variables
+        console.log("new data created");
+        let newProducts = await products.create(req.body)
+        res.json(newProducts)  // Return Variables
 
-        let tempProducts = req.body;
-        console.log(tempProducts);
+        // let tempProducts = req.body;
+        // console.log(tempProducts);
 
-        const newProducts = new products() // creating new instace for modals schema(products)
-        newProducts.name = tempProducts.name;
-        newProducts.image = tempProducts.image;
-        newProducts.price = tempProducts.price;
+        // const newProducts = new products() // creating new instace for modals schema(products)
+        // newProducts.name = tempProducts.name;
+        // newProducts.image = tempProducts.image;
+        // newProducts.price = tempProducts.price;
 
-        newProducts.save(); // It will saved the newly created schema
-        res.status(201).json('sucessfully Post')
+        // newProducts.save(); // It will saved the newly created schema
+        // res.status(201).json('sucessfully Post')
 
     } catch (err) {
         console.log(err);
@@ -30,7 +31,7 @@ router.post('/', async (req, res) => {
 // Read
 router.get('/', async (req, res) => {
     try {
-        let allProducts = await products.findOne({})
+        let allProducts = await products.find()
         res.json(allProducts)
     } catch (err) {
         console.error(err);
