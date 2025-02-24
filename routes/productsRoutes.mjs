@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
 // Read
 router.get('/', async (req, res) => {
     try {
-        let allProducts = await products.find()
+        let allProducts = await products.find().populate("image")
         res.json(allProducts)
     } catch (err) {
         console.error(err);
