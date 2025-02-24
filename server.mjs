@@ -2,9 +2,9 @@
 import express from 'express'
 import dotenv from 'dotenv'  // call your port here
 import connectDB from './config/db.mjs'
-import cloudinary from 'cloudinary';
-import multer from 'multer';
 import productsRoutes from './routes/productsRoutes.mjs';
+import photoRouter from './routes/photoRouter.mjs';
+import cors from 'cors';
 
 //Setup - Initialize express app
 const app = express(); // instance of express
@@ -14,16 +14,18 @@ dotenv.config(); // call the dotenv
 // DB Connection
 connectDB();
 
-//Message display in Browser
+//Message display in the Browser
 app.get("/", (req, res) => {
     res.send("Welcome. Server is Running...");
 })
 
 //Middleware
 app.use(express.json())
+app.use(cors());  // Enable CORS for all routes
 
 //Routes
 app.use('/products', productsRoutes)
+app.use('/photo', photoRouter)
 
 //Listener - Start the server
 app.listen(PORT, () => {

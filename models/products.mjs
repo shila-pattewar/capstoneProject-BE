@@ -12,7 +12,11 @@ const productsSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
-    }
+    },
+    ingredients: {
+        type: [String],
+    },
+
 });
 
 const products = mongoose.model('products', productsSchema);
