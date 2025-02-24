@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// import Photo from "./photo.mjs";
 
 const productsSchema = new mongoose.Schema({
     name: {
