@@ -8,7 +8,6 @@ const productsSchema = new mongoose.Schema({
     image: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Photo',
-        required: true
     },
     price: {
         type: Number,

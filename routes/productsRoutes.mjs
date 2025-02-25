@@ -5,22 +5,12 @@ const router = express.Router()
 
 // create
 router.post('/', async (req, res) => {
+    console.log(req.body)
     try {
         // Declare a variable then perform action on collection
         console.log("new data created");
         let newProducts = await products.create(req.body)
         res.json(newProducts)  // Return Variables
-
-        // let tempProducts = req.body;
-        // console.log(tempProducts);
-
-        // const newProducts = new products() // creating new instace for modals schema(products)
-        // newProducts.name = tempProducts.name;
-        // newProducts.image = tempProducts.image;
-        // newProducts.price = tempProducts.price;
-
-        // newProducts.save(); // It will saved the newly created schema
-        // res.status(201).json('sucessfully Post')
 
     } catch (err) {
         console.log(err);
